@@ -16,48 +16,131 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="MyGLWidget" name="openGLWidget">
+     <widget class="BrylaWidget" name="brylaWidget">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding"/>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QGroupBox" name="groupBox">
-      <property name="title">
-       <string>Bryły</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QRadioButton" name="radioButtonWalec">
-         <property name="text">
-          <string>Walec</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="radioButtonKula">
-         <property name="text">
-          <string>Kula</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="radioButtonProstopadloscian">
-         <property name="text">
-          <string>Prostopadłościan</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="radioButtonStozek">
-         <property name="text">
-          <string>Stożek</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string>Bryły</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QRadioButton" name="radioButtonWalec">
+           <property name="text">
+            <string>Walec</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButtonKula">
+           <property name="text">
+            <string>Kula</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButtonProstopadloscian">
+           <property name="text">
+            <string>Prostopadłościan</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButtonStozek">
+           <property name="text">
+            <string>Stożek</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="title">
+         <string>Kolory</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QRadioButton" name="colorButton1">
+           <property name="text">
+            <string>Czerwony</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="colorButton2">
+           <property name="text">
+            <string>Zielony</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="colorButton3">
+           <property name="text">
+            <string>Niebieski</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="colorButton4">
+           <property name="text">
+            <string>Żółty</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="colorButton5">
+           <property name="text">
+            <string>Cyjan</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="colorButton6">
+           <property name="text">
+            <string>Magenta</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="colorButton7">
+           <property name="text">
+            <string>Biały</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="colorButton8">
+           <property name="text">
+            <string>Szary</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="colorButton9">
+           <property name="text">
+            <string>Pomarańczowy</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="colorButton10">
+           <property name="text">
+            <string>Fioletowy</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -75,9 +158,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyGLWidget</class>
+   <class>BrylaWidget</class>
    <extends>QOpenGLWidget</extends>
-   <header>myglwidget.h</header>
+   <header>brylawidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

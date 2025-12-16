@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.19)
 project(generator_bryl LANGUAGES CXX)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets LinguistTools OpenGL OpenGLWidgets)
+find_package(OpenGL REQUIRED)
 
 qt_standard_project_setup()
 
@@ -11,8 +12,17 @@ qt_add_executable(generator_bryl
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
-    myglwidget.cpp
-    myglwidget.h
+    brylawidget.cpp
+    brylawidget.h
+    Bryla.h
+    Walec.h
+    Walec.cpp
+    Szescian.h
+    Szescian.cpp
+    Kula.h
+    Kula.cpp
+    Stozek.h
+    Stozek.cpp
 )
 
 qt_add_translations(
@@ -26,6 +36,7 @@ target_link_libraries(generator_bryl
         Qt::Widgets
         Qt::OpenGL
         Qt::OpenGLWidgets
+        OpenGL::GL
 )
 
 target_include_directories(generator_bryl PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

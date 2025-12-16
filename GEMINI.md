@@ -49,3 +49,11 @@ The executable will be located in the build directory. You can run it from there
 *   The code follows standard C++/Qt conventions.
 *   The UI is defined in `.ui` files (XML format) which are then compiled into C++ code.
 *   Internationalization is supported through `.ts` files.
+
+## Project Assumptions
+
+*   **Object-Oriented Design for Shapes:** The application will utilize a robust object-oriented approach for handling 3D shapes.
+*   **Base Shape Class:** A common base class, `Bryla` (Shape), will be introduced, providing an interface for all drawable 3D objects.
+*   **Specific Shape Classes:** Each distinct 3D shape (e.g., `Walec` for Cylinder, `Kula` for Sphere) will have its own dedicated class, inheriting from `Bryla`.
+*   **File Organization:** Each class will reside in its own `.h` and `.cpp` files to promote modularity and maintainability.
+*   **Full OOP Utilization:** The design will leverage inheritance, polymorphism, and other OOP principles to manage shape properties, rendering logic, and interactions effectively.

@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QColor>
+#include <QVector>
 
 class QButtonGroup;
 
@@ -21,9 +23,13 @@ public:
 
 private slots:
     void on_shape_button_clicked(int id);
+    void on_color_button_clicked(int id);
+
 
 private:
     Ui::MainWindow *ui;
     QButtonGroup *m_shapeButtonGroup;
+    QButtonGroup *m_colorButtonGroup;
+    QVector<QColor> m_colors;
 };
 #endif // MAINWINDOW_H
