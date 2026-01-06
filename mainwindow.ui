@@ -58,6 +58,41 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QRadioButton" name="radioButtonTorus">
+           <property name="text">
+            <string>Torus</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButtonKatenoida">
+           <property name="text">
+            <string>Katenoida</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButtonHelikoida">
+           <property name="text">
+            <string>Helikoida</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButtonWstegaMobiusa">
+           <property name="text">
+            <string>Wstęga Mobiusa</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButtonMengerSponge">
+           <property name="text">
+            <string>Kostka Mengera</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>
@@ -135,6 +170,342 @@
            <property name="text">
             <string>Fioletowy</string>
            </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="title">
+         <string>Parametry</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QStackedWidget" name="parameterStack">
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <widget class="QWidget" name="page_walec">
+            <layout class="QFormLayout" name="formLayoutWalec">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_walec_radius">
+               <property name="text">
+                <string>Promień</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_walec_radius"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_walec_height">
+               <property name="text">
+                <string>Wysokość</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_walec_height"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_walec_sides">
+               <property name="text">
+                <string>Boki</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="spinBox_walec_sides"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="page_kula">
+            <layout class="QFormLayout" name="formLayoutKula">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_kula_radius">
+               <property name="text">
+                <string>Promień</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_kula_radius"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_kula_rings">
+               <property name="text">
+                <string>Pierścienie</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="spinBox_kula_rings"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_kula_sectors">
+               <property name="text">
+                <string>Sektory</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="spinBox_kula_sectors"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="page_prostopadloscian">
+            <layout class="QFormLayout" name="formLayoutProstopadloscian">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_prostopadloscian_size">
+               <property name="text">
+                <string>Rozmiar</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_prostopadloscian_size"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="page_stozek">
+            <layout class="QFormLayout" name="formLayoutStozek">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_stozek_radius">
+               <property name="text">
+                <string>Promień</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_stozek_radius"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_stozek_height">
+               <property name="text">
+                <string>Wysokość</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_stozek_height"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_stozek_sides">
+               <property name="text">
+                <string>Boki</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="spinBox_stozek_sides"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="page_torus">
+            <layout class="QFormLayout" name="formLayoutTorus">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_torus_major">
+               <property name="text">
+                <string>Promień główny</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_torus_major"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_torus_minor">
+               <property name="text">
+                <string>Promień boczny</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_torus_minor"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_torus_major_seg">
+               <property name="text">
+                <string>Segmenty główne</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="spinBox_torus_major_seg"/>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_torus_minor_seg">
+               <property name="text">
+                <string>Segmenty boczne</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QSpinBox" name="spinBox_torus_minor_seg"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="page_katenoida">
+            <layout class="QFormLayout" name="formLayoutKatenoida">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_katenoida_c">
+               <property name="text">
+                <string>Stała c</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_katenoida_c"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_katenoida_v_range">
+               <property name="text">
+                <string>Zasięg v</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_katenoida_v_range"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_katenoida_u_seg">
+               <property name="text">
+                <string>Segmenty u</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="spinBox_katenoida_u_seg"/>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_katenoida_v_seg">
+               <property name="text">
+                <string>Segmenty v</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QSpinBox" name="spinBox_katenoida_v_seg"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="page_helikoida">
+            <layout class="QFormLayout" name="formLayoutHelikoida">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_helikoida_radius">
+               <property name="text">
+                <string>Promień</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_helikoida_radius"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_helikoida_rotations">
+               <property name="text">
+                <string>Obroty</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_helikoida_rotations"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_helikoida_alpha">
+               <property name="text">
+                <string>Alpha</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_helikoida_alpha"/>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_helikoida_radius_seg">
+               <property name="text">
+                <string>Segmenty promienia</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QSpinBox" name="spinBox_helikoida_radius_seg"/>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_helikoida_theta_seg">
+               <property name="text">
+                <string>Segmenty theta</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QSpinBox" name="spinBox_helikoida_theta_seg"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="page_wstegamobiusa">
+            <layout class="QFormLayout" name="formLayoutWstegaMobiusa">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_wstega_radius">
+               <property name="text">
+                <string>Promień</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_wstega_radius"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_wstega_width">
+               <property name="text">
+                <string>Szerokość</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_wstega_width"/>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_wstega_u_seg">
+               <property name="text">
+                <string>Segmenty u</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="spinBox_wstega_u_seg"/>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_wstega_v_seg">
+               <property name="text">
+                <string>Segmenty v</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QSpinBox" name="spinBox_wstega_v_seg"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="page_mengersponge">
+            <layout class="QFormLayout" name="formLayoutMengerSponge">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_menger_level">
+               <property name="text">
+                <string>Poziom</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="spinBox_menger_level">
+               <property name="maximum">
+                <number>3</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </widget>
          </item>
         </layout>

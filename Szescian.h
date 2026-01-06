@@ -5,12 +5,14 @@
 #include <QOpenGLFunctions>
 #include <QOpenGLBuffer>
 
+#include "Vertex.h"
+
 class Szescian : public Bryla, protected QOpenGLFunctions {
 public:
     Szescian(float size);
     ~Szescian();
     
-    void draw(QOpenGLShaderProgram *program, const QMatrix4x4 &projection, const QMatrix4x4 &view, const QMatrix4x4 &model, const QVector3D &color) override;
+    void draw(QOpenGLShaderProgram *program) override;
 
 private:
     void initialize(float size);

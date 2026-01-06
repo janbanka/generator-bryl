@@ -9,8 +9,9 @@
 #include <QWheelEvent>
 #include <QQuaternion>
 #include <memory>
+#include <variant>
 #include "Bryla.h"
-
+#include "Parameters.h"
 
 class BrylaWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
@@ -21,14 +22,22 @@ public:
         Cylinder,
         Sphere,
         Cuboid,
-        Cone
+        Cone,
+        Torus,
+        Katenoida,
+        Helikoida,
+        WstegaMobiusa,
+        MengerSponge
     };
     Q_ENUM(Shape)
+
+    using ShapeParameters = std::variant<CylinderParameters, SphereParameters, CuboidParameters, ConeParameters, TorusParameters, CatenoidParameters, HelicoidParameters, MobiusStripParameters, MengerSpongeParameters>;
 
     explicit BrylaWidget(QWidget *parent = nullptr);
     ~BrylaWidget();
 
 public slots:
+    void setCurrentShape(Shape shape, const ShapeParameters& params);
     void setCurrentShape(Shape shape);
     void setShapeColor(const QColor &color);
 
@@ -54,6 +63,10 @@ private:
     QQuaternion m_rotation;
     QVector3D m_translation;
     float m_cameraDistance;
+
+    bool m_isInitialized;
+    Shape m_pendingShape;
+    ShapeParameters m_pendingParams;
 };
 
 #endif // BRYLAWIDGET_H

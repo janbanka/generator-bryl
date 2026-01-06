@@ -6,12 +6,14 @@
 #include <QOpenGLBuffer>
 #include <vector>
 
+#include "Vertex.h"
+
 class Walec : public Bryla, protected QOpenGLFunctions {
 public:
     Walec(float radius, float height, int sides);
     ~Walec();
     
-    void draw(QOpenGLShaderProgram *program, const QMatrix4x4 &projection, const QMatrix4x4 &view, const QMatrix4x4 &model, const QVector3D &color) override;
+    void draw(QOpenGLShaderProgram *program) override;
 
 private:
     void initialize(float radius, float height, int sides);

@@ -23,6 +23,18 @@ qt_add_executable(generator_bryl
     Kula.cpp
     Stozek.h
     Stozek.cpp
+    Torus.h
+    Torus.cpp
+    Katenoida.h
+    Katenoida.cpp
+    Helikoida.h
+    Helikoida.cpp
+    WstegaMobiusa.h
+    WstegaMobiusa.cpp
+    MengerSponge.h
+    MengerSponge.cpp
+    Parameters.h
+    Vertex.h
 )
 
 qt_add_translations(

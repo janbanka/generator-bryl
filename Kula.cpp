@@ -1,8 +1,11 @@
+#include <cstddef>
 #include "Kula.h"
 #include <QOpenGLShaderProgram>
 #include <QVector3D>
 #include <vector>
 #include <cmath>
+#include "Vertex.h"
+#include <QDebug>
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -13,8 +16,10 @@ Kula::Kula(float radius, int rings, int sectors)
       m_ibo(QOpenGLBuffer::IndexBuffer),
       m_indexCount(0)
 {
+    qDebug() << "Kula constructor: start";
     initializeOpenGLFunctions();
     initialize(radius, rings, sectors);
+    qDebug() << "Kula constructor: end";
 }
 
 Kula::~Kula()
@@ -25,7 +30,8 @@ Kula::~Kula()
 
 void Kula::initialize(float radius, int rings, int sectors)
 {
-    std::vector<QVector3D> vertices;
+    qDebug() << "Kula initialize: start. radius=" << radius << " rings=" << rings << " sectors=" << sectors;
+    std::vector<Vertex> vertices;
     std::vector<GLushort> indices;
     
     float const R = 1./(float)(rings-1);
@@ -37,9 +43,13 @@ void Kula::initialize(float radius, int rings, int sectors)
             float const x = cos(2*M_PI * s * S) * sin( M_PI * r * R );
             float const z = sin(2*M_PI * s * S) * sin( M_PI * r * R );
 
-            vertices.push_back(QVector3D(x * radius, y * radius, z * radius));
+            QVector3D position(x * radius, y * radius, z * radius);
+            QVector3D normal = position.normalized(); // Normal is just normalized position for a sphere
+
+            vertices.push_back({position, normal});
         }
     }
+    qDebug() << "Kula initialize: vertices generated. count=" << vertices.size();
 
     for(int r = 0; r < rings-1; r++) {
         for(int s = 0; s < sectors-1; s++) {
@@ -52,33 +62,37 @@ void Kula::initialize(float radius, int rings, int sectors)
             indices.push_back(r * sectors + s);
         }
     }
+    qDebug() << "Kula initialize: indices generated. count=" << indices.size();
 
     m_indexCount = indices.size();
 
+    qDebug() << "Kula initialize: creating VBO";
     m_vbo.create();
     m_vbo.bind();
-    m_vbo.allocate(vertices.data(), vertices.size() * sizeof(QVector3D));
+    m_vbo.allocate(vertices.data(), vertices.size() * sizeof(Vertex));
 
+    qDebug() << "Kula initialize: creating IBO";
     m_ibo.create();
     m_ibo.bind();
     m_ibo.allocate(indices.data(), indices.size() * sizeof(GLushort));
+    qDebug() << "Kula initialize: end";
 }
 
-void Kula::draw(QOpenGLShaderProgram *program, const QMatrix4x4 &projection, const QMatrix4x4 &view, const QMatrix4x4 &model, const QVector3D &color)
+void Kula::draw(QOpenGLShaderProgram *program)
 {
-    program->setUniformValue("projection", projection);
-    program->setUniformValue("view", view);
-    program->setUniformValue("model", model);
-    program->setUniformValue("color", color);
-
     m_vbo.bind();
     m_ibo.bind();
 
-    int vertexLocation = program->attributeLocation("vertex");
-    program->enableAttributeArray(vertexLocation);
-    program->setAttributeBuffer(vertexLocation, GL_FLOAT, 0, 3, sizeof(QVector3D));
+    int positionLocation = program->attributeLocation("position");
+    program->enableAttributeArray(positionLocation);
+    program->setAttributeBuffer(positionLocation, GL_FLOAT, offsetof(Vertex, position), 3, sizeof(Vertex));
+
+    int normalLocation = program->attributeLocation("normal");
+    program->enableAttributeArray(normalLocation);
+    program->setAttributeBuffer(normalLocation, GL_FLOAT, offsetof(Vertex, normal), 3, sizeof(Vertex));
 
     glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, nullptr);
 
-    program->disableAttributeArray(vertexLocation);
+    program->disableAttributeArray(positionLocation);
+    program->disableAttributeArray(normalLocation);
 }
