@@ -9,13 +9,13 @@
 
 class Szescian : public Bryla, protected QOpenGLFunctions {
 public:
-    Szescian(float size);
+    Szescian(float width, float height, float depth);
     ~Szescian();
     
     void draw(QOpenGLShaderProgram *program) override;
 
 private:
-    void initialize(float size);
+    void initialize(float width, float height, float depth);
 
     QOpenGLBuffer m_vbo;
     QOpenGLBuffer m_ibo;

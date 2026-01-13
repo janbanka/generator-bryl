@@ -11,7 +11,7 @@
 #include "Katenoida.h"
 #include "Helikoida.h"
 #include "WstegaMobiusa.h"
-#include "MengerSponge.h"
+#include "KostkaMengera.h"
 
 #include <QDebug>
 
@@ -22,10 +22,14 @@ BrylaWidget::BrylaWidget(QWidget *parent)
       m_shapeColor(0.5f, 0.5f, 0.8f), // Default color
       m_translation(0.0f, 0.0f, 0.0f),
       m_cameraDistance(5.0f),
+      m_wireframe(false),
+      m_autoRotate(false),
       m_isInitialized(false),
       m_pendingShape(None)
 {
     m_rotation = QQuaternion::fromAxisAndAngle(1.0f, 0.0f, 0.0f, -30.0f);
+    m_autoRotateTimer = new QTimer(this);
+    connect(m_autoRotateTimer, &QTimer::timeout, this, &BrylaWidget::onAutoRotateTimeout);
 }
 
 BrylaWidget::~BrylaWidget()
@@ -56,7 +60,7 @@ void BrylaWidget::setCurrentShape(Shape shape, const ShapeParameters& params)
         else if constexpr (std::is_same_v<T, SphereParameters>)
             m_shape = std::make_unique<::Kula>(arg.radius, arg.rings, arg.sectors);
         else if constexpr (std::is_same_v<T, CuboidParameters>)
-            m_shape = std::make_unique<::Szescian>(arg.size);
+            m_shape = std::make_unique<::Szescian>(arg.width, arg.height, arg.depth);
         else if constexpr (std::is_same_v<T, ConeParameters>)
             m_shape = std::make_unique<::Stozek>(arg.radius, arg.height, arg.sides);
         else if constexpr (std::is_same_v<T, TorusParameters>)
@@ -67,8 +71,8 @@ void BrylaWidget::setCurrentShape(Shape shape, const ShapeParameters& params)
             m_shape = std::make_unique<::Helikoida>(arg.radius, arg.rotations, arg.alpha, arg.radius_segments, arg.theta_segments);
         else if constexpr (std::is_same_v<T, MobiusStripParameters>)
             m_shape = std::make_unique<::WstegaMobiusa>(arg.radius, arg.width, arg.u_segments, arg.v_segments);
-        else if constexpr (std::is_same_v<T, MengerSpongeParameters>)
-            m_shape = std::make_unique<::MengerSponge>(arg.level);
+        else if constexpr (std::is_same_v<T, KostkaMengeraParameters>)
+            m_shape = std::make_unique<::KostkaMengera>(arg.level);
     }, params);
 
     doneCurrent();
@@ -96,6 +100,39 @@ void BrylaWidget::setShapeColor(const QColor &color)
     m_shapeColor.setY(color.greenF());
     m_shapeColor.setZ(color.blueF());
     update();
+}
+
+void BrylaWidget::setAutoRotation(bool enabled)
+{
+    m_autoRotate = enabled;
+    if (m_autoRotate) {
+        if (!m_autoRotateTimer->isActive()) m_autoRotateTimer->start(16);
+    } else {
+        m_autoRotateTimer->stop();
+    }
+}
+
+void BrylaWidget::setWireframe(bool enabled)
+{
+    m_wireframe = enabled;
+    update();
+}
+
+void BrylaWidget::resetCamera()
+{
+    m_rotation = QQuaternion::fromAxisAndAngle(1.0f, 0.0f, 0.0f, -30.0f);
+    m_translation = QVector3D(0.0f, 0.0f, 0.0f);
+    m_cameraDistance = 5.0f;
+    update();
+}
+
+void BrylaWidget::onAutoRotateTimeout()
+{
+    if (m_autoRotate) {
+        // Rotate slowly around the Y axis
+        m_rotation = QQuaternion::fromAxisAndAngle(0.0f, 1.0f, 0.0f, 0.5f) * m_rotation;
+        update();
+    }
 }
 
 void BrylaWidget::initializeGL()
@@ -151,10 +188,9 @@ void BrylaWidget::initializeGL()
         "    vec3 diffuse = diff * lightColor;\n"
         "\n"
         "    // Specular\n"
-        "    float specularStrength = 0.5;\n"
         "    vec3 reflectDir = reflect(-lightDir, norm);\n"
         "    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32.0);\n"
-        "    vec3 specular = specularStrength * spec * lightColor;\n"
+        "    vec3 specular = 0.5 * spec * lightColor;\n"
         "\n"
         "    vec3 result = (ambient + diffuse + specular) * objectColor;\n"
         "    gl_FragColor = vec4(result, 1.0);\n"
@@ -179,6 +215,12 @@ void BrylaWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    if (m_wireframe) {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    } else {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    }
+
     if (!m_program->bind())
         return;
 
@@ -194,10 +236,11 @@ void BrylaWidget::paintGL()
     m_program->setUniformValue("view", m_view);
     m_program->setUniformValue("model", m_model);
     m_program->setUniformValue("normalMatrix", m_model.normalMatrix());
-    m_program->setUniformValue("objectColor", m_shapeColor);
+    
     m_program->setUniformValue("lightColor", QVector3D(1.0f, 1.0f, 1.0f));
     m_program->setUniformValue("lightPos", QVector3D(2.0f, 2.0f, 5.0f));
     m_program->setUniformValue("viewPos", viewPos);
+    m_program->setUniformValue("objectColor", m_shapeColor);
 
 
     if (m_shape)

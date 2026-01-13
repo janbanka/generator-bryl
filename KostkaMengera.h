@@ -1,5 +1,5 @@
-#ifndef MENGERSPONGE_H
-#define MENGERSPONGE_H
+#ifndef KOSTKAMENGERA_H
+#define KOSTKAMENGERA_H
 
 #include "Bryla.h"
 #include <QOpenGLFunctions>
@@ -7,10 +7,10 @@
 #include <vector>
 #include "Vertex.h"
 
-class MengerSponge : public Bryla, protected QOpenGLFunctions {
+class KostkaMengera : public Bryla, protected QOpenGLFunctions {
 public:
-    MengerSponge(int level);
-    ~MengerSponge();
+    KostkaMengera(int level);
+    ~KostkaMengera();
     
     void draw(QOpenGLShaderProgram *program) override;
 
@@ -24,7 +24,7 @@ private:
     int m_indexCount;
     
     std::vector<Vertex> m_vertices;
-    std::vector<GLushort> m_indices;
+    std::vector<GLuint> m_indices;
 };
 
-#endif // MENGERSPONGE_H
+#endif // KOSTKAMENGERA_H

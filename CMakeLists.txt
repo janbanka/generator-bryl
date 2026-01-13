@@ -31,8 +31,8 @@ qt_add_executable(generator_bryl
     Helikoida.cpp
     WstegaMobiusa.h
     WstegaMobiusa.cpp
-    MengerSponge.h
-    MengerSponge.cpp
+    KostkaMengera.h
+    KostkaMengera.cpp
     Parameters.h
     Vertex.h
 )

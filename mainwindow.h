@@ -46,6 +46,6 @@ private:
     CatenoidParameters m_catenoidParams;
     HelicoidParameters m_helicoidParams;
     MobiusStripParameters m_mobiusParams;
-    MengerSpongeParameters m_mengerParams;
+    KostkaMengeraParameters m_kostkaMengeraParams;
 };
 #endif // MAINWINDOW_H

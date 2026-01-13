@@ -1,9 +1,9 @@
 #include <cstddef>
-#include "MengerSponge.h"
+#include "KostkaMengera.h"
 #include <QOpenGLShaderProgram>
 #include <QVector3D>
 
-MengerSponge::MengerSponge(int level)
+KostkaMengera::KostkaMengera(int level)
     : m_vbo(QOpenGLBuffer::VertexBuffer),
       m_ibo(QOpenGLBuffer::IndexBuffer),
       m_indexCount(0)
@@ -12,13 +12,13 @@ MengerSponge::MengerSponge(int level)
     initialize(level);
 }
 
-MengerSponge::~MengerSponge()
+KostkaMengera::~KostkaMengera()
 {
     m_vbo.destroy();
     m_ibo.destroy();
 }
 
-void MengerSponge::initialize(int level)
+void KostkaMengera::initialize(int level)
 {
     m_vertices.clear();
     m_indices.clear();
@@ -32,10 +32,10 @@ void MengerSponge::initialize(int level)
 
     m_ibo.create();
     m_ibo.bind();
-    m_ibo.allocate(m_indices.data(), m_indices.size() * sizeof(GLushort));
+    m_ibo.allocate(m_indices.data(), m_indices.size() * sizeof(GLuint));
 }
 
-void MengerSponge::subdivide(int level, const QVector3D& center, float size)
+void KostkaMengera::subdivide(int level, const QVector3D& center, float size)
 {
     if (level == 0) {
         createCube(center, size);
@@ -56,7 +56,7 @@ void MengerSponge::subdivide(int level, const QVector3D& center, float size)
     }
 }
 
-void MengerSponge::createCube(const QVector3D& center, float size)
+void KostkaMengera::createCube(const QVector3D& center, float size)
 {
     float s = size / 2.0f;
     int baseIndex = m_vertices.size();
@@ -116,7 +116,7 @@ void MengerSponge::createCube(const QVector3D& center, float size)
     m_indices.push_back(baseIndex + 22); m_indices.push_back(baseIndex + 23); m_indices.push_back(baseIndex + 20);
 }
 
-void MengerSponge::draw(QOpenGLShaderProgram *program)
+void KostkaMengera::draw(QOpenGLShaderProgram *program)
 {
     m_vbo.bind();
     m_ibo.bind();
@@ -129,7 +129,7 @@ void MengerSponge::draw(QOpenGLShaderProgram *program)
     program->enableAttributeArray(normalLocation);
     program->setAttributeBuffer(normalLocation, GL_FLOAT, offsetof(Vertex, normal), 3, sizeof(Vertex));
 
-    glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, nullptr);
+    glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_INT, nullptr);
 
     program->disableAttributeArray(positionLocation);
     program->disableAttributeArray(normalLocation);
